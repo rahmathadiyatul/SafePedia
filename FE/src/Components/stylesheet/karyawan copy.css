@@ -1,0 +1,75 @@
+.jumlah-data {
+    width: 21%;
+    border: 3px solid black;
+    margin-bottom: 2px;
+}
+
+.cari {
+    width: 75px;
+    position: end;
+    border: 3px solid black;
+    margin-bottom: 2px;
+}
+
+/* .table-headers {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    font-size: x-small;
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-collapse: collapse;
+}
+
+.table-data {
+    min-height: 130px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tc {
+    padding-left: 10px;
+    text-align: left;
+    font-size: x-small;
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-collapse: collapse;
+} */
+
+.iterate {
+    background-color: white;
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-size: x-small;
+    font-weight: bolder;
+}
+
+.iterate:active {
+    background-color: gray;
+    color: white;
+    border-left: 4px solid black;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+}
+
+.non-iterate {
+    background-color: white;
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-size: x-small;
+    font-weight: bolder;
+}
+
+.non-iterate:active {
+    background-color: gray;
+    color: white;
+    border-left: 4px solid black;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+}
