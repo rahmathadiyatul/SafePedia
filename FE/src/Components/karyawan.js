@@ -6,6 +6,7 @@ const Karyawan = (props) => {
     const [pages, setPages] = useState([])
     const [cari, setCari] = useState('')
     const [jumlah, setJumlah] = useState(0)
+    const { border, karyawan } = props
 
     useEffect(() => {
         pageCount()
@@ -19,9 +20,6 @@ const Karyawan = (props) => {
         }
         setPages(page)
     }
-
-
-    const { border, karyawan } = props
 
     const showData = karyawan.filter((post, i) => {
         if (cari === '') {
