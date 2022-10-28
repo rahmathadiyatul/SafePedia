@@ -6,6 +6,7 @@ import './stylesheet/karyawan.css'
 const Kendaraan = (props) => {
     const [pages, setPages] = useState([])
     const [cari, setCari] = useState('')
+    const [tipeKendaraan, setTipeKendaraan] = useState('')
     const [jumlah, setJumlah] = useState(0)
     const { kendaraan } = props
 
@@ -26,22 +27,40 @@ const Kendaraan = (props) => {
         if (cari === '') {
             console.log(post)
             return post
-        }
-        else if (post.tipe.toLowerCase().includes(cari.toLowerCase())) {
-            const result = Object.entries(post).slice(0, jumlah)
-            return result;
-        }
-        else if (post.warna.toLowerCase().includes(cari.toLowerCase())) {
-            const result = Object.entries(post).slice(0, jumlah)
-            return result;
-        }
-        else if (post.jumlahRoda.toString().includes(cari.toLowerCase())) {
-            const result = Object.entries(post).slice(0, jumlah)
-            return result;
-        }
-        else if (post.tanggalBeli.toString().includes(cari.toLowerCase())) {
-            const result = Object.entries(post).slice(0, jumlah)
-            return result;
+        } else if (post.tipe.toLowerCase().includes(tipeKendaraan.toLowerCase())) {
+            if (post.tipe.toLowerCase().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.warna.toLowerCase().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.jumlahRoda.toString().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.tanggalBeli.toString().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+        } else if (post.tipe.toLowerCase().includes(tipeKendaraan.toLowerCase())) {
+            if (post.tipe.toLowerCase().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.warna.toLowerCase().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.jumlahRoda.toString().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
+            else if (post.tanggalBeli.toString().includes(cari.toLowerCase())) {
+                const result = Object.entries(post).slice(0, jumlah)
+                return result;
+            }
         }
     }).map((item, i) =>
         <tr>
@@ -91,8 +110,8 @@ const Kendaraan = (props) => {
                     <div>
                         <select name='tipe' id='tipe' style={{ backgroundColor: 'white', border: '3px solid black', marginTop: '3px', textAlign: 'center', fontSize: 'small', fontWeight: 'bold', height: '25px' }} className='tipe'>Tipe
                             <option value="All">Tipe</option>
-                            <option onChange={(e) => setMobil(e.target.value)} value="Mobil">Mobil</option>
-                            <option onChange={(e) => setMotor(e.target.value)} value="Motor">Motor</option>
+                            <option onChange={(e) => setTipeKendaraan(e.target.value)} value="Mobil">Mobil</option>
+                            <option onChange={(e) => setTipeKendaraan(e.target.value)} value="Motor">Motor</option>
                         </select>
                     </div>
                 </footer>
