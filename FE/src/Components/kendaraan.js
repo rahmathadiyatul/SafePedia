@@ -4,21 +4,53 @@ import './stylesheet/karyawan.css'
 
 
 const Kendaraan = (props) => {
-    const [pages, setPages] = useState(0)
+    const [pages, setPages] = useState([])
+    const [cari, setCari] = useState('')
+    const [jumlah, setJumlah] = useState(0)
+    const { kendaraan } = props
+
     useEffect(() => {
-        let count = Math.floor(kendaraan.length / 8) + 1
-        setPages(count)
-        console.log(pages)
+        pageCount()
     }, [])
 
-    const { kendaraan } = props
-    const show = () => {
-        console.log(pages)
+    const pageCount = () => {
+        let count = Math.floor(kendaraan.length / 8) + 1
+        let page = []
+        for (let i = 0; i < count; i++) {
+            page.push(i + 1)
+        }
+        setPages(page)
     }
-    const temp = []
-    for (let i = 0; i < 8; i++) {
-        temp.push(kendaraan[i])
-    }
+
+    const showData = kendaraan.filter((post, i) => {
+        if (cari === '') {
+            console.log(post)
+            return post
+        }
+        else if (post.tipe.toLowerCase().includes(cari.toLowerCase())) {
+            const result = Object.entries(post).slice(0, jumlah)
+            return result;
+        }
+        else if (post.warna.toLowerCase().includes(cari.toLowerCase())) {
+            const result = Object.entries(post).slice(0, jumlah)
+            return result;
+        }
+        else if (post.jumlahRoda.toString().includes(cari.toLowerCase())) {
+            const result = Object.entries(post).slice(0, jumlah)
+            return result;
+        }
+        else if (post.tanggalBeli.toString().includes(cari.toLowerCase())) {
+            const result = Object.entries(post).slice(0, jumlah)
+            return result;
+        }
+    }).map((item, i) =>
+        <tr>
+            <td style={{ borderRight: '3px solid black', width: '10%' }}>{i + 1}</td>
+            <td style={{ width: '18%' }}>{item.tipe}</td>
+            <td style={{ width: '18%' }}>{item.warna}</td>
+            <td style={{ width: '27%' }}>{item.tanggalBeli}</td>
+            <td style={{ width: '27%' }}>{item.jumlahRoda}</td>
+        </tr>)
 
     return (
         <div style={{ margin: '15px 40px', display: 'flex', flexDirection: 'column' }}>
@@ -26,10 +58,10 @@ const Kendaraan = (props) => {
             <div style={{ width: '450px', margin: '50px 0', height: '350px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <header style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <form>
-                        <input className='jumlah-data' type='text'></input>
+                        <input id={jumlah} onChange={(e) => setJumlah(e.target.value)} className='jumlah-data' type='jumlah'></input>
                     </form>
                     <form>
-                        <input className='cari' type='text'></input>
+                        <input id={cari} onChange={(e) => setCari(e.target.value)} className='cari' type='text'></input>
                     </form>
                 </header>
                 <table className='table-headers'>
@@ -43,37 +75,24 @@ const Kendaraan = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {kendaraan.length < 8 ?
-                            kendaraan.map((item, i) =>
-                                <tr>
-                                    <td style={{ borderRight: '3px solid black', width: '10%' }}>{i + 1}</td>
-                                    <td style={{ width: '18%' }}>{item.tipe}</td>
-                                    <td style={{ width: '18%' }}>{item.warna}</td>
-                                    <td style={{ width: '27%' }}>{item.tanggalBeli}</td>
-                                    <td style={{ width: '27%' }}>{item.jumlahRoda}</td>
-                                </tr>)
-                            :
-                            temp.map((item, i) =>
-                                <tr>
-                                    <td style={{ borderRight: '3px solid black', width: '10%' }}>{i + 1}</td>
-                                    <td style={{ width: '18%' }}>{item.tipe}</td>
-                                    <td style={{ width: '18%' }}>{item.warna}</td>
-                                    <td style={{ width: '27%' }}>{item.tanggalBeli}</td>
-                                    <td style={{ width: '27%' }}>{item.jumlahRoda}</td>
-                                </tr>)
+                        {
+                            showData
                         }
                     </tbody>
                 </table>
                 <footer style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <div style={{ margin: 0 }}>
-                        <button className='iterate'>1</button>
-                        <button className='non-iterate'>2 . . .</button>
+                        {
+                            pages.map((data, index) =>
+                                <button className='iterate'>{index + 1}</button>
+                            )
+                        }
                     </div>
                     <div>
                         <select name='tipe' id='tipe' style={{ backgroundColor: 'white', border: '3px solid black', marginTop: '3px', textAlign: 'center', fontSize: 'small', fontWeight: 'bold', height: '25px' }} className='tipe'>Tipe
                             <option value="All">Tipe</option>
-                            <option value="Mobil">Mobil</option>
-                            <option value="Motor">Motor</option>
+                            <option onChange={(e) => setMobil(e.target.value)} value="Mobil">Mobil</option>
+                            <option onChange={(e) => setMotor(e.target.value)} value="Motor">Motor</option>
                         </select>
                     </div>
                 </footer>
